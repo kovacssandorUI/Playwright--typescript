@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Typescript example project",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "cucumberWithTS": "cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts"
+  },
   "author": "Sandor Kovacs",
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^11.0.1",
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.8.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
 }
