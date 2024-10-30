@@ -4,7 +4,7 @@
   "description": "Typescript example project",
   "main": "index.js",
   "scripts": {
-    "cucumberWithTS": "npx cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts"
+    "cucumberWithTS": "npx cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts -- require src/utils/cucumber-timout.ts"
   },
   "author": "Sandor Kovacs",
   "license": "ISC",
