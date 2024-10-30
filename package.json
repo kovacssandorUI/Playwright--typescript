@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Typescript example project",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "cucumberWithTS": "npx cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts"
+  },
   "author": "Sandor Kovacs",
   "license": "ISC",
   "devDependencies": {
