@@ -63,16 +63,3 @@ Feature: WebdriverUniversity.com - Contact Us Page
             | Grace     | Hudson   | grace_hudson              | Do you create websites? | Invalid email address       |
 
 
-    Scenario Outline: Validate Login Portal Page
-        Given I navigate to the webdriveruniversity homepage
-        When I click on the login portal button
-        And I switch to the new browser tab
-        And I type the username '<userName>' and password '<password>'
-        And I click on the Login button
-        Then Should be popup with text '<message>'
-
-        Examples:
-            | userName  | password     | message              |
-            | webdriver | webdriver123 | validation succeeded |
-            | webdriver | wrongPW      | validation failed    |
-

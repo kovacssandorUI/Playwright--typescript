@@ -2,26 +2,32 @@ import { When, Then } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
 
-When(
-  "I type the username {string} and password {string}",
-  async (username, password) => {
-    //await pageFixture.page.click('input[name="username"]');
-    await pageFixture.page.getByPlaceholder("Username").fill(username);
+let alertText: string;
 
-    await pageFixture.page.getByPlaceholder("Password").fill(password);
-    //await pageFixture.page.fill('input[name="username"]', username);
-    // await pageFixture.page.fill('input[name="password"]', password);
+When("I type a username {word}", async (username: string) => {
+  await pageFixture.page.getByPlaceholder("Username").fill(username);
+});
+
+When("I type a password {word}", async (password: string) => {
+  await pageFixture.page.getByPlaceholder("Password").fill(password);
+});
+
+When("I click on the login button", async () => {
+  await pageFixture.page.on("dialog", async (alert) => {
+    alertText = alert.message();
+    console.log(alertText);
+    await alert.accept();
+  });
+
+  const loginButton = await pageFixture.page.locator("#login-button");
+  await loginButton.hover();
+  await loginButton.click({ force: true });
+  //await pageFixture.page.waitForTimeout(2000);
+});
+
+Then(
+  "I should be presented with an alert box which contains text {string}",
+  async (expectedAlertText: string) => {
+    expect(alertText).toBe(expectedAlertText);
   }
 );
-
-When("I click on the Login button", async () => {
-  //await pageFixture.page.click('input[value="SUBMIT"]');
-  const login_Button = pageFixture.page.locator("#login-button");
-  await login_Button.click();
-});
-
-Then("Should be popup with text {string}", async (string) => {
-  await pageFixture.page.waitForSelector(".alert", { timeout: 60000 });
-  const text = await pageFixture.page.innerText(".alert");
-  expect(text).toBe(string);
-});
