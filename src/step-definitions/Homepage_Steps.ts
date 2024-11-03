@@ -31,3 +31,8 @@ When("I switch to the new browser tab", async () => {
   //Ensure the newly assigned tab is also fully maximised
   await pageFixture.page.setViewportSize({ width: 1920, height: 1080 });
 });
+
+When("I click on the login portal button", async () => {
+  const loginPortal_Button = pageFixture.page.locator("#login-portal");
+  await loginPortal_Button.click();
+});
